@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calm Wealth – Tâm Lý Học Về Tiền</title>
+<style>
+:root{--bg:#0d1520;--card:#1a2332;--card2:#243044;--border:#2d3d52;--moss:#4a7c59;--moss-l:#5a9469;--moss-d:#3a6249;--cream:#f5f0e8;--cream-d:#e8e0d0;--gold:#c9a84c;--gold-l:#d4b85e;--red:#c0392b;--red-l:#e74c3c;--txt:#e8e0d0;--txt-m:#a0978a;--txt-d:#706860;--radius:12px}
+[data-theme=light]{--bg:#f5f0e8;--card:#fff;--card2:#f0ebe3;--border:#d4cfc5;--txt:#1a2332;--txt-m:#5a6577;--txt-d:#8a9099}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;overflow:hidden;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.sidebar{width:240px;min-width:240px;background:var(--card);border-right:1px solid var(--border);height:100vh;overflow-y:auto;display:flex;flex-direction:column;transition:background .3s}
+.sb-brand{padding:24px 20px 16px;border-bottom:1px solid var(--border)}
+.sb-brand h1{font-size:17px;color:var(--cream);font-weight:700}.sb-brand small{font-size:10px;color:var(--txt-m);letter-spacing:1px;text-transform:uppercase}
+[data-theme=light] .sb-brand h1{color:var(--txt)}
+.sb-group{padding:12px 10px 4px}.sb-group-t{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--txt-d);padding:0 10px 6px;font-weight:700}
+.sb-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;border:none;background:0;color:var(--txt-m);font-size:12.5px;cursor:pointer;border-radius:8px;text-align:left;transition:.2s;font-family:inherit}
+.sb-btn:hover{background:var(--card2);color:var(--txt)}.sb-btn.on{background:var(--moss-d);color:#fff;font-weight:600}
+.sb-btn .icon{width:16px;text-align:center;font-size:14px;flex-shrink:0}
+.sb-footer{margin-top:auto;padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sb-footer small{font-size:10px;color:var(--txt-d)}
+.theme-btn{background:var(--card2);border:1px solid var(--border);color:var(--txt-m);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-family:inherit}
+
+.main{flex:1;height:100vh;overflow-y:auto;padding:36px 44px;max-width:960px}
+.page{display:none}.page.on{display:block}
+.pg-title{font-size:26px;font-weight:700;margin-bottom:4px}.pg-desc{font-size:13px;color:var(--txt-m);line-height:1.6;margin-bottom:28px;max-width:680px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;transition:background .3s}
+.card h3{font-size:15px;margin-bottom:12px;font-weight:600}.card-sm{padding:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+.quote{border-left:3px solid var(--moss);padding:14px 18px;background:rgba(74,124,89,.07);border-radius:0 8px 8px 0;margin:14px 0;font-style:italic;color:var(--txt-m);font-size:13.5px;line-height:1.7}
+.quote cite{display:block;margin-top:6px;font-style:normal;font-size:11px;color:var(--moss-l)}
+
+label.lbl{display:block;font-size:11px;color:var(--txt-m);margin-bottom:5px;font-weight:600;letter-spacing:.3px}
+input[type=text],input[type=number],textarea,select{width:100%;padding:9px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--txt);font-size:13px;font-family:inherit;outline:0;transition:border .2s}
+input:focus,textarea:focus{border-color:var(--moss)}textarea{resize:vertical;min-height:70px}
+
+.btn{padding:9px 20px;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s;letter-spacing:.2px}
+.btn-p{background:var(--moss);color:#fff}.btn-p:hover{background:var(--moss-l)}
+.btn-s{background:var(--card2);color:var(--txt);border:1px solid var(--border)}.btn-s:hover{background:var(--border)}
+.btn-g{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+
+.tag{display:inline-block;padding:3px 10px;border-radius:16px;font-size:10px;font-weight:600;margin:2px}
+.tag-g{background:rgba(74,124,89,.15);color:var(--moss-l)}.tag-y{background:rgba(201,168,76,.15);color:var(--gold-l)}.tag-r{background:rgba(192,57,43,.15);color:var(--red-l)}
+
+.meter{height:7px;background:var(--bg);border-radius:4px;overflow:hidden;margin:6px 0 3px}
+.meter-f{height:100%;border-radius:4px;transition:width .5s}
+.meter-i{display:flex;justify-content:space-between;font-size:10px;color:var(--txt-d)}
+
+.ring{position:relative;width:130px;height:130px;margin:0 auto 10px}
+.ring svg{transform:rotate(-90deg)}.ring .rv{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:30px;font-weight:700}.ring .rv small{font-size:12px;color:var(--txt-m);font-weight:400}
+
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0}
+.opt-c{padding:10px 14px;background:var(--bg);border:2px solid var(--border);border-radius:8px;cursor:pointer;transition:.2s;font-size:12.5px;color:var(--txt-m);line-height:1.5}
+.opt-c:hover{border-color:var(--moss-d);color:var(--txt)}.opt-c.sel{border-color:var(--moss);background:rgba(74,124,89,.1);color:var(--txt)}
+
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.tab-b{padding:8px 16px;border:0;background:0;color:var(--txt-m);font-size:12px;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;transition:.2s;font-weight:500}
+.tab-b:hover{color:var(--txt)}.tab-b.on{color:var(--moss-l);border-bottom-color:var(--moss)}
+.tab-p{display:none}.tab-p.on{display:block}
+
+.principle-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;cursor:pointer;transition:.2s}
+.principle-card:hover{border-color:var(--moss-d)}
+.principle-card .pc-num{font-size:10px;color:var(--moss-l);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.principle-card .pc-title{font-size:15px;font-weight:600;margin-bottom:6px}
+.principle-card .pc-sum{font-size:12.5px;color:var(--txt-m);line-height:1.6}
+.pc-done{opacity:.6}.pc-done .pc-num::after{content:' ✓';color:var(--moss-l)}
+
+.detail-section{margin-bottom:20px}.detail-section h4{font-size:13px;color:var(--moss-l);margin-bottom:8px;font-weight:600;letter-spacing:.3px}
+.detail-section p,.detail-section li{font-size:13px;color:var(--txt-m);line-height:1.7}
+.detail-section ul{padding-left:18px}.detail-section li{margin-bottom:4px}
+
+.warn-box{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px;margin:12px 0}
+.warn-box .wb-t{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--gold-l);font-weight:700;margin-bottom:4px}
+.warn-box p{font-size:12.5px;color:var(--txt-m);line-height:1.6}
+
+.action-box{background:rgba(74,124,89,.07);border:1px solid rgba(74,124,89,.2);border-radius:8px;padding:14px;margin:8px 0}
+.action-box .ab-t{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--moss-l);font-weight:700;margin-bottom:4px}
+
+.ck-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--txt-m);line-height:1.5}
+.ck-item:last-child{border:0}
+.ck-item input[type=checkbox]{margin-top:3px;accent-color:var(--moss)}
+.ck-item.done{text-decoration:line-through;opacity:.5}
+
+.fc-card{perspective:800px;height:260px;cursor:pointer;margin-bottom:16px}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc-card.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:28px;text-align:center}
+.fc-front{background:var(--card);border:1px solid var(--border)}
+.fc-back{background:var(--moss-d);color:#fff;transform:rotateY(180deg)}
+.fc-front .fc-label{font-size:10px;color:var(--moss-l);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:700}
+.fc-front p{font-size:15px;line-height:1.6;color:var(--txt)}
+.fc-back .fc-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:700;opacity:.7}
+.fc-back p{font-size:14px;line-height:1.6}
+.fc-nav{display:flex;justify-content:center;gap:12px;align-items:center;margin-top:8px}
+.fc-nav span{font-size:12px;color:var(--txt-m)}
+
+.sim-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px}
+.sim-q{font-size:14px;line-height:1.7;margin-bottom:16px}
+.sim-opts .opt-c{margin-bottom:6px}
+.sim-fb{margin-top:14px;padding:16px;border-radius:8px;font-size:13px;line-height:1.7}
+.sim-fb.correct{background:rgba(74,124,89,.1);border:1px solid rgba(74,124,89,.3);color:var(--txt)}
+.sim-fb.wrong{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);color:var(--txt)}
+
+.mistake-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.mistake-card .mk-num{font-size:10px;color:var(--red-l);font-weight:700;letter-spacing:1px;margin-bottom:3px}
+.mistake-card .mk-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.mistake-card .mk-desc{font-size:12.5px;color:var(--txt-m);line-height:1.6}
+
+.stat-box{text-align:center;padding:16px}.stat-box .sn{font-size:28px;font-weight:700}.stat-box .sl{font-size:11px;color:var(--txt-m);margin-top:3px}
+
+.identity-display{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:18px;margin:12px 0;font-style:italic;font-size:14px;line-height:1.7;color:var(--txt)}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card,.principle-card,.sim-card,.mistake-card{animation:fadeIn .25s ease}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+<div class="sb-brand"><h1>Calm Wealth</h1><small>Tâm lý học về tiền · Housel</small></div>
+<div class="sb-group"><div class="sb-group-t">Tổng quan</div>
+<button class="sb-btn on" onclick="go('home',this)"><span class="icon">🏠</span>Trang chủ</button>
+<button class="sb-btn" onclick="go('dash',this)"><span class="icon">📊</span>Bảng tiến trình</button></div>
+<div class="sb-group"><div class="sb-group-t">Học tập</div>
+<button class="sb-btn" onclick="go('core',this)"><span class="icon">📖</span>12 Nguyên lý cốt lõi</button>
+<button class="sb-btn" onclick="go('action',this)"><span class="icon">⚡</span>Chuyển hóa hành động</button>
+<button class="sb-btn" onclick="go('flash',this)"><span class="icon">🃏</span>Thẻ ghi nhớ</button></div>
+<div class="sb-group"><div class="sb-group-t">Thực hành</div>
+<button class="sb-btn" onclick="go('sim',this)"><span class="icon">🎯</span>Mô phỏng quyết định</button>
+<button class="sb-btn" onclick="go('mistakes',this)"><span class="icon">⚠️</span>12 Sai lầm phổ biến</button></div>
+<div class="sb-group"><div class="sb-group-t">Công cụ</div>
+<button class="sb-btn" onclick="go('identity',this)"><span class="icon">🪞</span>Bản sắc tài chính</button>
+<button class="sb-btn" onclick="go('compound',this)"><span class="icon">📈</span>Máy tính lãi kép</button>
+<button class="sb-btn" onclick="go('margin',this)"><span class="icon">🛡️</span>Dư địa an toàn</button></div>
+<div class="sb-footer"><small>Ngô Cương</small><button class="theme-btn" onclick="toggleTheme()">🌙 Giao diện</button></div>
+</nav>
+
+<div class="main" id="app"></div>
+
+<script>
+// ===== DỮ LIỆU =====
+const P=[
+{id:1,title:"Không ai điên cả",sum:"Mỗi người đưa ra quyết định tài chính dựa trên trải nghiệm độc nhất của mình. Cái có vẻ điên rồ với bạn lại hoàn toàn hợp lý với người khác. Chúng ta đều là tù nhân của góc nhìn cá nhân.",
+ex:"Một người trải qua siêu lạm phát sẽ tích trữ vàng, trong khi người lớn lên trong thời kỳ thịnh vượng sẽ mạnh dạn đầu tư chứng khoán. Cả hai đều hợp lý trong bối cảnh riêng.",
+reflect:"Trải nghiệm nào thời nhỏ đang chi phối cách bạn nghĩ về tiền hôm nay?",
+warn:"Đừng vội phán xét quyết định tài chính của người khác – bạn chưa sống cuộc đời họ.",
+micro:"Viết ra 3 ký ức sớm nhất về tiền bạc trong gia đình bạn.",
+ifthen:"NẾU tôi muốn phán xét ai đó về tiền → THÌ tôi tự hỏi: hoàn cảnh nào khiến họ nghĩ vậy?",
+longterm:"Tôn trọng rằng mỗi người có một câu chuyện tiền bạc riêng.",
+avoid:"Áp đặt triết lý tài chính của mình lên người khác."},
+{id:2,title:"May mắn & Rủi ro",sum:"Thành công và thất bại tài chính không hoàn toàn do năng lực. May mắn và rủi ro là anh em sinh đôi – cùng một hành động có thể dẫn đến kết quả trái ngược. Đừng đánh giá quyết định chỉ qua kết quả.",
+ex:"Bill Gates học ở Lakeside – một trong số ít trường có máy tính năm 1968. Kent Evans, bạn thân Gates, cũng giỏi như vậy nhưng qua đời vì tai nạn leo núi trước khi tốt nghiệp.",
+reflect:"Bạn đã bao giờ thành công nhờ may mắn nhưng lại nghĩ đó là do tài năng?",
+warn:"Quá tự tin sau thành công có thể khiến bạn đánh giá thấp rủi ro ở quyết định tiếp theo.",
+micro:"Liệt kê 1 thành công và 1 thất bại – xác định vai trò may mắn/rủi ro trong mỗi cái.",
+ifthen:"NẾU tôi thành công lớn → THÌ tôi tự hỏi: bao nhiêu phần trăm là may mắn?",
+longterm:"Không đánh giá quyết định chỉ qua kết quả, mà qua quy trình ra quyết định.",
+avoid:"Nghĩ rằng thành công hoàn toàn do mình và thất bại hoàn toàn do xui."},
+{id:3,title:"Không bao giờ đủ",sum:"Khi goalpost liên tục dịch chuyển, bạn sẽ mạo hiểm thứ mình CẦN để đạt thứ mình MUỐN. Rajat Gupta có 100 triệu đô nhưng vẫn giao dịch nội gián vì muốn thành tỷ phú. Biết đủ là siêu năng lực.",
+ex:"Bernie Madoff đã giàu hợp pháp trước khi lừa đảo. Ông ta không cần thêm tiền – nhưng không bao giờ thấy đủ, và đánh mất tất cả.",
+reflect:"Điều gì trong cuộc sống mà nếu mất đi, không số tiền nào bù đắp được?",
+warn:"So sánh tài sản với người khác là cuộc chơi bạn không bao giờ thắng.",
+micro:"Viết ra 5 thứ bạn đã có mà không muốn mạo hiểm mất.",
+ifthen:"NẾU tôi muốn mạo hiểm lớn → THÌ tôi kiểm tra: mình đang mạo hiểm cái gì để được cái gì?",
+longterm:"Xác định rõ mức 'đủ' và cam kết không dịch chuyển nó.",
+avoid:"So sánh tài sản với người giàu hơn để đặt mục tiêu mới."},
+{id:4,title:"Sức mạnh của lãi kép",sum:"Warren Buffett có 84,5 tỷ đô – 81,5 tỷ đến sau sinh nhật 65 tuổi. Bí mật không phải lợi nhuận cao nhất, mà là thời gian dài nhất. Lãi kép là phần thưởng cho sự kiên nhẫn.",
+ex:"Nếu bạn đầu tư 10 triệu VNĐ/tháng với lãi 10%/năm, sau 10 năm có ~2 tỷ, nhưng sau 30 năm có ~22 tỷ. 20 năm thêm tạo ra gấp 10 lần.",
+reflect:"Bạn có đang tìm kiếm lợi nhuận nhanh thay vì để thời gian làm việc cho mình?",
+warn:"Tìm kiếm siêu lợi nhuận ngắn hạn thường phá hủy lãi kép dài hạn.",
+micro:"Mở máy tính lãi kép (tab Công cụ) và tính xem tiền của bạn sau 30 năm.",
+ifthen:"NẾU tôi muốn rút tiền đầu tư sớm → THÌ tôi tính xem mất bao nhiêu lãi kép.",
+longterm:"Để thời gian làm đồng minh – đầu tư kiên nhẫn dù lợi nhuận không ngoạn mục.",
+avoid:"Liên tục thay đổi chiến lược đầu tư vì thấy cách khác có vẻ nhanh hơn."},
+{id:5,title:"Kiếm tiền khác giữ tiền",sum:"Kiếm tiền đòi hỏi lạc quan, mạo hiểm, tự tin. Giữ tiền đòi hỏi khiêm tốn, sợ hãi, thận trọng. Hai kỹ năng này hoàn toàn trái ngược nhưng đều cần thiết.",
+ex:"Jesse Livermore kiếm được tương đương 100 triệu đô vào năm 1929 nhờ bán khống. Nhưng ông không biết giữ, tiếp tục đánh bạc và phá sản nhiều lần.",
+reflect:"Bạn giỏi kiếm tiền hơn hay giữ tiền hơn? Cái nào cần cải thiện?",
+warn:"Thành công trong kiếm tiền có thể tạo ảo tưởng rằng bạn cũng giỏi giữ tiền.",
+micro:"Kiểm tra: bạn có quỹ dự phòng bao nhiêu tháng? Nếu <3 tháng, lên kế hoạch ngay.",
+ifthen:"NẾU tài khoản tăng mạnh → THÌ tôi nhớ: giữ được mới là thực sự giàu.",
+longterm:"Sống sót là nền tảng – không ai hưởng lãi kép nếu bị loại khỏi cuộc chơi.",
+avoid:"Dùng toàn bộ lợi nhuận để đầu tư tiếp mà không giữ lại dự phòng."},
+{id:6,title:"Đuôi phân phối – Ít thắng, thắng lớn",sum:"Phần lớn kết quả đến từ một số ít sự kiện. Bạn có thể sai 50% thời gian nhưng vẫn giàu nếu đúng ở vài quyết định quan trọng. Đừng sợ thất bại ở nhiều lần nhỏ.",
+ex:"Heinz Berggruen mua hàng nghìn bức tranh, phần lớn không giá trị. Nhưng vài bức Picasso và Matisse đã biến ông thành tỷ phú nghệ thuật.",
+reflect:"Bạn có đang đòi hỏi mọi quyết định phải đúng, hay chấp nhận rằng chỉ cần đúng ở vài quyết định lớn?",
+warn:"Sợ thất bại nhỏ có thể khiến bạn bỏ lỡ thành công đột phá.",
+micro:"Liệt kê 3 'cú đặt cược' đã thay đổi cuộc đời bạn (nghề nghiệp, học hành, quan hệ).",
+ifthen:"NẾU tôi thất bại ở một khoản đầu tư → THÌ tôi tự hỏi: danh mục tổng thể có ổn không?",
+longterm:"Chấp nhận rằng đa số quyết định sẽ tầm thường – chỉ cần vài quyết định đúng.",
+avoid:"Đánh giá từng quyết định riêng lẻ thay vì nhìn tổng thể danh mục."},
+{id:7,title:"Tự do là cổ tức cao nhất",sum:"Giá trị lớn nhất của tiền là cho bạn quyền kiểm soát thời gian. Làm gì bạn muốn, khi bạn muốn, với ai bạn muốn – đó mới là giàu thực sự.",
+ex:"Một bác sĩ lương cao nhưng làm 80 giờ/tuần và ghét công việc nghèo hơn một freelancer thu nhập vừa phải nhưng hoàn toàn tự do thời gian.",
+reflect:"Nếu có đủ tiền, bạn sẽ dùng thời gian để làm gì?",
+warn:"Đuổi theo thu nhập cao mà mất kiểm soát thời gian là đánh đổi sai.",
+micro:"Tính xem mỗi ngày bạn có bao nhiêu giờ thực sự TỰ DO (không bắt buộc).",
+ifthen:"NẾU tôi cân nhắc việc lương cao hơn → THÌ tôi kiểm tra: nó có tăng hay giảm tự do của tôi?",
+longterm:"Đặt mục tiêu tài chính xoay quanh tự do thời gian, không chỉ số dư tài khoản.",
+avoid:"Chấp nhận công việc chỉ vì tiền mà hy sinh toàn bộ quyền kiểm soát thời gian."},
+{id:8,title:"Hợp lý tốt hơn lý trí",sum:"Quyết định tài chính tối ưu trên lý thuyết thường không thể duy trì trong thực tế. Hãy chọn chiến lược bạn có thể ngủ ngon, không phải chiến lược hoàn hảo trên Excel.",
+ex:"Về lý thuyết, bạn nên đầu tư 100% vào cổ phiếu vì lợi nhuận dài hạn cao nhất. Nhưng nếu điều đó khiến bạn hoảng loạn bán khi thị trường giảm 30%, thì 60/40 cổ phiếu/trái phiếu tốt hơn.",
+reflect:"Chiến lược tài chính nào bạn có thể duy trì 20 năm mà không hoảng loạn?",
+warn:"Chiến lược hoàn hảo trên giấy nhưng không thể duy trì thì không có giá trị.",
+micro:"Viết ra chiến lược tài chính hiện tại – bạn có ngủ ngon với nó không?",
+ifthen:"NẾU một chiến lược quá căng thẳng → THÌ tôi chọn phương án dễ chịu hơn dù lợi nhuận thấp hơn.",
+longterm:"Chọn chiến lược bạn có thể DUY TRÌ, không phải chiến lược tối ưu trên lý thuyết.",
+avoid:"Chạy theo chiến lược phức tạp mà bạn không hiểu hoặc không chịu nổi biến động."},
+{id:9,title:"Dư địa sai sót",sum:"Kế hoạch quan trọng nhất là kế hoạch cho việc kế hoạch sẽ không đúng. Dư địa an toàn không phải bi quan – mà là thừa nhận thế giới bất định. Luôn có khoản đệm.",
+ex:"Nếu bạn dự tính chi 20 triệu/tháng, hãy lên kế hoạch cho 25 triệu. 5 triệu dư không lãng phí – nó là bảo hiểm cho bất ngờ.",
+reflect:"Kế hoạch tài chính của bạn có chịu được nếu mọi thứ tệ hơn 30% so với dự kiến?",
+warn:"Kế hoạch không có dư địa sai sót sẽ vỡ khi gặp bất ngờ đầu tiên.",
+micro:"Kiểm tra quỹ dự phòng: có đủ 6 tháng chi tiêu không? Nếu không, bắt đầu tích lũy.",
+ifthen:"NẾU tôi lên kế hoạch tài chính → THÌ tôi luôn thêm 20-30% dự phòng.",
+longterm:"Sống dưới khả năng tài chính để luôn có đệm an toàn.",
+avoid:"Lên kế hoạch dựa trên kịch bản tốt nhất mà không tính đến bất ngờ."},
+{id:10,title:"Bạn sẽ thay đổi",sum:"Con người đánh giá thấp mức độ mình sẽ thay đổi. Mục tiêu tuổi 25 không giống tuổi 45. Kế hoạch tài chính cần linh hoạt với sự thay đổi của chính bạn.",
+ex:"Nhiều người chọn nghề lúc 18 tuổi, dành 20 năm theo đuổi, rồi nhận ra không còn muốn nữa. Kế hoạch tài chính cũng vậy – hãy để chỗ cho sự thay đổi.",
+reflect:"Mục tiêu tài chính của bạn 5 năm trước có còn đúng hôm nay không?",
+warn:"Kế hoạch cứng nhắc 30 năm có thể trở thành nhà tù nếu bạn thay đổi.",
+micro:"Xem lại mục tiêu tài chính – có cái nào đã lỗi thời chưa?",
+ifthen:"NẾU mục tiêu không còn phù hợp → THÌ tôi điều chỉnh thay vì ép mình tiếp tục.",
+longterm:"Xây kế hoạch tài chính có khả năng thích ứng, không phải kế hoạch cố định.",
+avoid:"Cam kết tuyệt đối với kế hoạch 30 năm mà không xem xét lại định kỳ."},
+{id:11,title:"Sự giàu có vô hình",sum:"Giàu là thứ bạn KHÔNG nhìn thấy. Chiếc xe sang không chứng minh giàu – nó chỉ chứng minh người đó đã chi tiền. Tài sản thực sự là tiền bạn chưa tiêu.",
+ex:"Một người lái xe sang có thể đang nợ ngập đầu. Người đi xe máy có thể có tài khoản tỷ đồng. Sự giàu có nằm ở bảng cân đối, không ở vẻ bề ngoài.",
+reflect:"Bạn có đang chi tiền để thể hiện giàu có, hay đang thực sự tích lũy tài sản?",
+warn:"Mua sắm để chứng minh giàu có thực ra đang làm bạn nghèo đi.",
+micro:"Liệt kê 3 khoản chi gần đây mà chỉ để 'trông giàu' – có thể cắt không?",
+ifthen:"NẾU tôi muốn mua thứ đắt tiền → THÌ tôi tự hỏi: mua vì cần hay vì muốn người khác thấy?",
+longterm:"Tài sản thực sự = thu nhập – chi tiêu. Tập trung vào tích lũy, không phải thể hiện.",
+avoid:"Tăng chi tiêu theo thu nhập – lifestyle inflation là kẻ thù của giàu có."},
+{id:12,title:"Sự quyến rũ của bi quan",sum:"Bi quan nghe thông minh, lạc quan nghe ngây thơ. Nhưng dài hạn, thế giới tiến bộ nhiều hơn thụt lùi. Người bi quan bỏ lỡ phần thưởng lớn nhất: lãi kép của sự kiên nhẫn.",
+ex:"Năm 2008, mọi người nghĩ kinh tế sẽ sụp đổ vĩnh viễn. 10 năm sau, S&P 500 tăng gấp 4. Những người hoảng loạn bán thua xa người kiên nhẫn giữ.",
+reflect:"Bạn có xu hướng nghe theo tin xấu nhiều hơn tin tốt? Điều đó ảnh hưởng gì đến tài chính?",
+warn:"Bi quan khiến bạn bán khi nên giữ, và không mua khi nên mua.",
+micro:"Đọc lại 5 dự đoán 'tận thế kinh tế' từ quá khứ – bao nhiêu cái thành hiện thực?",
+ifthen:"NẾU tin tức tài chính tiêu cực → THÌ tôi chờ 48 giờ trước khi hành động.",
+longterm:"Lạc quan thận trọng: tin rằng dài hạn sẽ tốt lên, nhưng luôn có dự phòng.",
+avoid:"Bán tháo vì hoảng loạn khi đọc tin xấu."}
+];
+
+const SIM=[
+{q:"Bạn đầu tư 500 triệu VNĐ. Sau 1 năm, thị trường giảm 35%. Bạn sẽ?",
+opts:["Bán hết để cắt lỗ","Bán một nửa","Giữ nguyên, không làm gì","Mua thêm với giá rẻ"],
+best:2,
+fb:"Housel nhấn mạnh: hoảng loạn bán khi thị trường giảm là phá hủy lãi kép. Biến động là phí nhập cửa, không phải tín hiệu thoát. Giữ nguyên hoặc mua thêm (nếu có dư địa an toàn) thường là quyết định hợp lý dài hạn. Quan trọng nhất: bạn vẫn ở trong cuộc chơi."},
+{q:"Bạn đồng nghiệp khoe lãi 200% từ tiền số trong 3 tháng. Bạn sẽ?",
+opts:["Đầu tư ngay một khoản lớn","Đầu tư nhỏ thử xem","Tìm hiểu kỹ rồi quyết định","Chúc mừng họ và tiếp tục kế hoạch của mình"],
+best:3,
+fb:"Đây là bẫy FOMO điển hình. Housel cảnh báo: câu chuyện thành công của người khác thuộc về BỐI CẢNH của họ. May mắn đóng vai trò lớn. Tiếp tục kế hoạch riêng là quyết định của người có 'đủ'."},
+{q:"Lương bạn tăng 40%. Bạn nên dùng phần tăng thêm thế nào?",
+opts:["Nâng cấp xe và nhà","Đi du lịch sang chảnh","Tăng tiết kiệm/đầu tư 70%, chi tiêu thêm 30%","Giữ nguyên lối sống, đầu tư 100% phần tăng"],
+best:2,
+fb:"Housel: giàu có = thu nhập – chi tiêu. Tăng chi tiêu theo thu nhập (lifestyle inflation) là kẻ thù lớn nhất. Lý tưởng là giữ nguyên lối sống, nhưng 'hợp lý > lý trí' – tăng một chút chi tiêu để vui sống cũng cần thiết. 70/30 là cân bằng tốt."},
+{q:"Bạn có cơ hội đầu tư 'chắc ăn 100%' nhưng phải dùng toàn bộ quỹ dự phòng. Bạn sẽ?",
+opts:["Đầu tư hết – cơ hội có một không hai","Đầu tư 50% quỹ dự phòng","Chỉ dùng tiền dư, giữ nguyên quỹ dự phòng","Từ chối hoàn toàn"],
+best:2,
+fb:"Housel: không có gì 'chắc 100%'. Dùng quỹ dự phòng = xóa bỏ dư địa sai sót. Nếu cơ hội tốt thật, hãy dùng tiền dư – KHÔNG BAO GIỜ đụng vào quỹ dự phòng. Sống sót là nền tảng."},
+{q:"Thị trường liên tục tăng 5 năm. Mọi người xung quanh đều lời lớn. Bạn nghĩ gì?",
+opts:["Thị trường sẽ tăng mãi – tôi cần đầu tư nhiều hơn","Tôi đang bỏ lỡ cơ hội lớn","Đây là lúc cần thận trọng hơn","Tôi nên rút hết tiền ra vì sắp sập"],
+best:2,
+fb:"5 năm tăng liên tục tạo ảo giác rằng rủi ro không tồn tại – đây là thiên kiến gần. Housel sẽ không khuyên bán hết (bi quan quá mức), nhưng đây là lúc cần TĂNG dư địa an toàn, không phải tăng mạo hiểm."},
+{q:"Bạn 30 tuổi, có 2 lựa chọn: Công việc A lương 50 triệu nhưng tự do thời gian, Công việc B lương 120 triệu nhưng làm 70 giờ/tuần. Bạn chọn?",
+opts:["B – tiền là quan trọng nhất lúc trẻ","B – chịu khó 10 năm rồi nghỉ","A – tự do thời gian quý hơn","Tùy hoàn cảnh – không có đáp án đúng duy nhất"],
+best:3,
+fb:"Housel: tự do thời gian là cổ tức cao nhất. Tuy nhiên, 'hợp lý > lý trí' – hoàn cảnh mỗi người khác nhau. Nếu bạn nợ nần chồng chất, B có thể hợp lý tạm thời. Nhưng MỤC TIÊU cuối cùng nên là kiểm soát thời gian."},
+{q:"Một chuyên gia tài chính dự đoán kinh tế sẽ suy thoái năm tới. Bạn sẽ?",
+opts:["Bán hết tài sản rủi ro ngay","Chuyển 50% sang tiền mặt","Ghi nhận nhưng không thay đổi kế hoạch","Tăng đầu tư vì thị trường sẽ rẻ"],
+best:2,
+fb:"Housel: sự quyến rũ của bi quan khiến dự đoán tiêu cực nghe thông minh. Nhưng hầu hết dự đoán suy thoái đều sai. Ghi nhận thông tin nhưng giữ kế hoạch dài hạn – đó là sức mạnh của người bình thản."},
+{q:"Bạn đã đầu tư 5 năm, lãi 8%/năm – ổn nhưng không ngoạn mục. Bạn nghe về chiến lược mới hứa hẹn 25%/năm. Bạn sẽ?",
+opts:["Chuyển hết sang chiến lược mới","Chuyển một phần thử","Nghiên cứu kỹ nhưng có thể giữ nguyên","Giữ nguyên – 8% trong 30 năm tốt hơn 25% trong 3 năm"],
+best:3,
+fb:"Đây là bài học lãi kép. 8%/năm trong 30 năm biến 100 triệu thành ~1 tỷ. 25%/năm nghe hấp dẫn nhưng hiếm ai duy trì được – và khi thất bại, bạn mất lãi kép đã tích lũy. Housel: kiên nhẫn thắng phấn khích."},
+{q:"Bạn vừa nhận thưởng lớn bất ngờ. Phản ứng đầu tiên?",
+opts:["Mua ngay thứ mình thích đã lâu","Đầu tư hết vào cơ hội đang 'nóng'","Bỏ vào tài khoản tiết kiệm, nghĩ 1 tuần rồi quyết định","Chia đều: chi tiêu, tiết kiệm, đầu tư"],
+best:2,
+fb:"Quyết định tài chính dưới cảm xúc mạnh (dù tích cực) thường không tối ưu. Housel: hợp lý > lý trí – cho mình thời gian suy nghĩ. Bỏ vào tiết kiệm trước, quyết định sau 1 tuần là cách kiểm soát cảm xúc hiệu quả."},
+{q:"Bạn thấy hàng xóm mới mua xe hơi sang. Cảm xúc đầu tiên?",
+opts:["Ghen tỵ – mình cần kiếm nhiều hơn","Tự hỏi họ có đang nợ không","Vui cho họ, tiếp tục kế hoạch","Cảm thấy thua kém, muốn mua xe tương đương"],
+best:2,
+fb:"Housel: sự giàu có là thứ bạn KHÔNG nhìn thấy. Chiếc xe sang có thể là bằng chứng của nợ nần, không phải giàu có. Người giàu thực sự thường không cần chứng minh. Đừng để 'so sánh xã hội' dịch chuyển goalpost của bạn."}
+];
+
+const FLASH=[
+{front:"Thấy bạn bè khoe lãi đầu tư trên mạng xã hội",back:"Không ai điên cả – mỗi người có bối cảnh riêng. Đừng để câu chuyện người khác thay thế kế hoạch của bạn."},
+{front:"Vừa lãi lớn, cảm thấy mình là thiên tài đầu tư",back:"May mắn & Rủi ro – thành công có thể chủ yếu nhờ may mắn. Hãy khiêm tốn và giữ dư địa an toàn."},
+{front:"Đạt mục tiêu tiết kiệm nhưng ngay lập tức muốn nhiều hơn",back:"Không bao giờ đủ – goalpost đang dịch chuyển. Hãy dừng lại và trân trọng những gì đã đạt được."},
+{front:"Nóng ruột vì đầu tư tăng chậm",back:"Sức mạnh lãi kép – 81,5 tỷ đô của Buffett đến sau tuổi 65. Kiên nhẫn là siêu năng lực."},
+{front:"Vừa kiếm được khoản lớn, muốn đầu tư hết tiếp",back:"Kiếm tiền ≠ Giữ tiền – hãy trích dự phòng trước. Sống sót là nền tảng."},
+{front:"Một khoản đầu tư thua lỗ nặng",back:"Đuôi phân phối – bạn có thể sai nhiều lần, chỉ cần đúng ở vài quyết định lớn. Nhìn tổng thể."},
+{front:"Được đề nghị việc lương cao nhưng mất tự do",back:"Tự do là cổ tức cao nhất – tiền có giá trị nhất khi cho bạn kiểm soát thời gian."},
+{front:"Chiến lược đầu tư 'hoàn hảo' khiến bạn mất ngủ",back:"Hợp lý > Lý trí – chiến lược tốt nhất là chiến lược bạn có thể DUY TRÌ mà ngủ ngon."},
+{front:"Tin tức dự đoán suy thoái kinh tế",back:"Sự quyến rũ của bi quan – bi quan nghe thông minh nhưng lạc quan thắng dài hạn. Chờ 48 giờ trước khi hành động."},
+{front:"Kế hoạch tài chính bị phá vỡ bởi bất ngờ",back:"Dư địa sai sót – kế hoạch tốt nhất là kế hoạch cho việc kế hoạch sẽ sai. Luôn có khoản đệm."},
+{front:"Mục tiêu tài chính 5 năm trước không còn phù hợp",back:"Bạn sẽ thay đổi – đừng trói mình vào kế hoạch cũ. Linh hoạt là sức mạnh."},
+{front:"Thấy người khác có nhà to, xe đẹp mà mình thì không",back:"Sự giàu có vô hình – giàu thực sự là tiền bạn CHƯA tiêu, không phải thứ người khác nhìn thấy."}
+];
+
+const MISTAKES=[
+{title:"Chạy theo lợi nhuận nhanh",desc:"Tìm kiếm siêu lợi nhuận ngắn hạn phá hủy lãi kép dài hạn. Buffett giàu không phải vì lợi nhuận cao nhất mà vì đầu tư từ năm 10 tuổi."},
+{title:"So sánh tài sản với người khác",desc:"Cuộc chơi so sánh không có đích đến. Khi goalpost liên tục dịch chuyển, bạn mạo hiểm thứ mình CẦN để đạt thứ mình MUỐN."},
+{title:"Không có dư địa sai sót",desc:"Kế hoạch không có đệm sẽ vỡ khi gặp bất ngờ đầu tiên. Thế giới bất định – luôn cần khoản dự phòng."},
+{title:"Tăng chuẩn sống theo thu nhập",desc:"Lifestyle inflation là kẻ thù thầm lặng. Kiếm 50 triệu chi 50 triệu = kiếm 10 triệu chi 10 triệu. Không tích lũy được gì."},
+{title:"Nghĩ mình kiểm soát được may mắn",desc:"Thành công tạo ảo tưởng về năng lực. May mắn đóng vai trò lớn hơn bạn nghĩ – khiêm tốn là bảo hiểm tốt nhất."},
+{title:"Nhầm lẫn giàu có với tự do",desc:"Người có nhiều tiền nhưng không kiểm soát thời gian chưa thực sự giàu. Tự do thời gian là đỉnh cao của giàu có."},
+{title:"Bán khi hoảng loạn",desc:"Biến động là phí nhập cửa, không phải tín hiệu thoát. Hoảng loạn bán = chốt lỗ và mất quyền hưởng lãi kép."},
+{title:"Tin vào dự đoán thị trường",desc:"Gần như không ai dự đoán đúng thị trường liên tục. Kế hoạch dài hạn thắng dự đoán ngắn hạn mọi lúc."},
+{title:"Đánh giá quyết định qua kết quả",desc:"Quyết định tốt có thể cho kết quả xấu (rủi ro) và ngược lại (may mắn). Đánh giá quy trình, không đánh giá kết quả."},
+{title:"Bỏ qua sức mạnh thời gian",desc:"Người ta đánh giá thấp lãi kép vì nó không trực giác. 10% mỗi năm nghe tẻ nhạt, nhưng sau 30 năm nó tạo ra phép màu."},
+{title:"Kế hoạch cứng nhắc không linh hoạt",desc:"Bạn tuổi 25 và tuổi 45 là hai người khác nhau. Kế hoạch tài chính cần thay đổi theo bạn."},
+{title:"Chi tiền để chứng minh giàu có",desc:"Giàu thực sự là thứ không ai nhìn thấy. Mua xe sang bằng tiết kiệm = giảm tài sản thực sự. Sự giàu có nằm ở bảng cân đối."}
+];
+
+const IDENTITY_QS=[
+{q:"Khi nghĩ về tiền, cảm xúc đầu tiên là gì?",opts:["Lo lắng, bất an","An toàn, thoải mái","Phấn khích, hào hứng","Bình thản, không quan tâm"]},
+{q:"Khi thị trường biến động mạnh, bạn thường?",opts:["Hoảng loạn, muốn bán","Cảm thấy lo nhưng giữ được","Thấy cơ hội mua thêm","Không để ý, tin vào dài hạn"]},
+{q:"Mục tiêu tài chính quan trọng nhất?",opts:["Giàu có, nhiều tài sản","An toàn, không lo về tiền","Tự do thời gian","Để lại di sản cho gia đình"]},
+{q:"Bạn đối xử với tiền như?",opts:["Công cụ tạo an toàn","Phương tiện đạt tự do","Thước đo thành công","Nguồn lực cần quản lý thông minh"]}
+];
+
+// ===== LƯU TRỮ =====
+const LS={
+g(k){try{return JSON.parse(localStorage.getItem('cw2_'+k))}catch{return null}},
+s(k,v){localStorage.setItem('cw2_'+k,JSON.stringify(v))},
+};
+let S={
+done:LS.g('done')||[],
+simDone:LS.g('simDone')||[],
+simScore:LS.g('simScore')||0,
+checks:LS.g('checks')||{},
+identity:LS.g('identity')||{},
+fcIdx:LS.g('fcIdx')||0,
+fcDue:LS.g('fcDue')||FLASH.map((_,i)=>({id:i,due:0,interval:1})),
+};
+function save(){['done','simDone','simScore','checks','identity','fcIdx','fcDue'].forEach(k=>LS.s(k,S[k]))}
+
+// ===== ĐIỀU HƯỚNG =====
+let curPage='home';
+function go(id,btn){
+curPage=id;
+document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('on'));
+if(btn)btn.classList.add('on');
+render();
+}
+function toggleTheme(){
+const t=document.documentElement.getAttribute('data-theme')==='light'?'':'light';
+document.documentElement.setAttribute('data-theme',t);
+LS.s('theme',t);
+}
+if(LS.g('theme')==='light') document.documentElement.setAttribute('data-theme','light');
+
+// ===== TIỆN ÍCH =====
+function sc(v){return v>=70?'var(--moss-l)':v>=40?'var(--gold-l)':'var(--red-l)'}
+function ring(v,sz=130,st=9){
+const r=(sz-st)/2,c=2*Math.PI*r,o=c*(1-v/100);
+return `<div class="ring" style="width:${sz}px;height:${sz}px"><svg width="${sz}" height="${sz}"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="var(--border)" stroke-width="${st}"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${sc(v)}" stroke-width="${st}" stroke-dasharray="${c}" stroke-dashoffset="${o}" stroke-linecap="round"/></svg><div class="rv">${v}<small>/100</small></div></div>`;
+}
+function calmScore(){
+const totalP=P.length,doneP=S.done.length;
+const pScore=Math.round(doneP/totalP*40);
+const simTotal=SIM.length,simDone=S.simDone.length;
+const sScore=simTotal?Math.round(S.simScore/simTotal*30):0;
+const checkTotal=P.length*4,checkDone=Object.values(S.checks).filter(Boolean).length;
+const cScore=checkTotal?Math.round(checkDone/checkTotal*30):0;
+return Math.min(100,pScore+sScore+cScore);
+}
+
+// ===== KẾT XUẤT =====
+function render(){
+const app=document.getElementById('app');
+const pages={home:pgHome,dash:pgDash,core:pgCore,action:pgAction,flash:pgFlash,sim:pgSim,mistakes:pgMistakes,identity:pgIdentity,compound:pgCompound,margin:pgMargin};
+app.innerHTML=(pages[curPage]||pgHome)();
+if(curPage==='compound')initCompound();
+if(curPage==='margin')initMargin();
+app.scrollTop=0;
+}
+
+function pgHome(){
+const cs=calmScore();
+return `<div class="page on">
+<div class="pg-title">Tâm lý học về tiền</div>
+<div class="pg-desc">Ứng dụng giáo dục dựa trên cuốn sách của Morgan Housel – giúp bạn hiểu mối quan hệ giữa cảm xúc, hành vi, niềm tin và quyết định tài chính.</div>
+<div class="quote">"Làm tốt với tiền bạc không liên quan nhiều đến mức độ thông minh của bạn, mà liên quan nhiều đến cách bạn hành xử."<cite>— Morgan Housel</cite></div>
+<div class="grid3" style="margin-top:24px">
+<div class="card card-sm" style="text-align:center">${ring(cs)}<div style="font-size:12px;color:var(--txt-m)">Điểm bình thản tài chính</div></div>
+<div class="card card-sm"><div class="stat-box"><div class="sn">${S.done.length}/${P.length}</div><div class="sl">Nguyên lý đã học</div></div></div>
+<div class="card card-sm"><div class="stat-box"><div class="sn">${S.simDone.length}/${SIM.length}</div><div class="sl">Tình huống đã mô phỏng</div></div></div>
+</div>
+<div class="card" style="margin-top:16px">
+<h3>Lộ trình học tập</h3>
+<p style="font-size:13px;color:var(--txt-m);line-height:1.7;margin-bottom:14px">Bắt đầu từ 12 Nguyên lý cốt lõi → Xây dựng Bản sắc tài chính → Chuyển hóa hành động → Mô phỏng quyết định → Thẻ ghi nhớ → Tránh sai lầm → Sử dụng công cụ → Theo dõi tiến trình.</p>
+<div class="btn-g"><button class="btn btn-p" onclick="go('core',document.querySelectorAll('.sb-btn')[2])">Bắt đầu học ngay</button></div>
+</div></div>`;
+}
+
+function pgDash(){
+const cs=calmScore();
+const checkDone=Object.values(S.checks).filter(Boolean).length;
+return `<div class="page on"><div class="pg-title">Bảng tiến trình</div><div class="pg-desc">Theo dõi quá trình học tập và thay đổi hành vi tài chính.</div>
+<div class="grid2">
+<div class="card" style="text-align:center">${ring(cs,150,10)}<div style="font-size:13px;color:var(--txt-m)">Điểm bình thản tài chính</div><div style="font-size:11px;color:var(--txt-d);margin-top:4px">Nguyên lý 40% + Mô phỏng 30% + Hành động 30%</div></div>
+<div class="card">
+<h3>Chi tiết tiến trình</h3>
+<div style="margin-bottom:10px"><label class="lbl">Nguyên lý đã hoàn thành (${S.done.length}/${P.length})</label><div class="meter"><div class="meter-f" style="width:${S.done.length/P.length*100}%;background:var(--moss-l)"></div></div></div>
+<div style="margin-bottom:10px"><label class="lbl">Tình huống đã mô phỏng (${S.simDone.length}/${SIM.length})</label><div class="meter"><div class="meter-f" style="width:${S.simDone.length/SIM.length*100}%;background:var(--gold-l)"></div></div></div>
+<div style="margin-bottom:10px"><label class="lbl">Hành vi đã áp dụng (${checkDone}/${P.length*4})</label><div class="meter"><div class="meter-f" style="width:${checkDone/(P.length*4)*100}%;background:var(--moss)"></div></div></div>
+</div></div>
+<div class="card"><h3>Đánh giá</h3><p style="font-size:13px;color:var(--txt-m);line-height:1.7">${cs>=70?'Bạn đang trên đường trở thành người có bản sắc tài chính điềm tĩnh. Hãy tiếp tục duy trì và áp dụng các nguyên lý vào cuộc sống.':cs>=40?'Bạn đã hiểu nhiều nguyên lý quan trọng. Hãy tập trung vào phần Chuyển hóa hành động và Mô phỏng quyết định để nâng điểm.':'Bạn vẫn đang ở giai đoạn đầu. Hãy bắt đầu với 12 Nguyên lý cốt lõi và hoàn thành từng bước.'}</p></div>
+</div>`;
+}
+
+let detailId=null;
+function pgCore(){
+if(detailId!==null) return pgCoreDetail(detailId);
+return `<div class="page on"><div class="pg-title">12 Nguyên lý cốt lõi</div><div class="pg-desc">Mỗi nguyên lý là một bài học từ "Tâm lý học về tiền". Nhấn vào để đọc chi tiết, ví dụ, câu hỏi phản tư và cảnh báo hành vi.</div>
+${P.map(p=>`<div class="principle-card ${S.done.includes(p.id)?'pc-done':''}" onclick="detailId=${p.id};render()">
+<div class="pc-num">Nguyên lý ${p.id}</div>
+<div class="pc-title">${p.title}</div>
+<div class="pc-sum">${p.sum.split('.').slice(0,2).join('.')}.</div>
+</div>`).join('')}</div>`;
+}
+
+function pgCoreDetail(id){
+const p=P.find(x=>x.id===id);
+const done=S.done.includes(id);
+return `<div class="page on">
+<div class="btn-g" style="margin-bottom:16px"><button class="btn btn-s" onclick="detailId=null;render()">← Quay lại danh sách</button></div>
+<div class="pg-title">Nguyên lý ${p.id}: ${p.title}</div>
+<div class="card">
+<div class="detail-section"><h4>Nội dung chính</h4><p>${p.sum}</p></div>
+<div class="detail-section"><h4>Ví dụ thực tế</h4><p>${p.ex}</p></div>
+<div class="detail-section"><h4>Câu hỏi phản tư</h4><p style="font-style:italic;color:var(--moss-l)">"${p.reflect}"</p></div>
+<div class="warn-box"><div class="wb-t">⚠️ Cảnh báo hành vi cảm tính</div><p>${p.warn}</p></div>
+<div class="action-box"><div class="ab-t">⚡ Hành động nhỏ (dưới 10 phút)</div><p>${p.micro}</p></div>
+<div class="action-box"><div class="ab-t">🔄 Quy tắc Nếu–Thì</div><p>${p.ifthen}</p></div>
+<div class="action-box"><div class="ab-t">🎯 Nguyên tắc dài hạn</div><p>${p.longterm}</p></div>
+<div class="warn-box"><div class="wb-t">🚫 Việc nên tránh</div><p>${p.avoid}</p></div>
+<div class="btn-g">
+${done?`<button class="btn btn-s" onclick="S.done=S.done.filter(x=>x!==${id});save();render()">Đánh dấu chưa hoàn thành</button>`:`<button class="btn btn-p" onclick="if(!S.done.includes(${id}))S.done.push(${id});save();render()">✓ Đánh dấu đã hoàn thành</button>`}
+<button class="btn btn-s" onclick="detailId=${id<P.length?id+1:null};render()">${id<P.length?'Nguyên lý tiếp theo →':'Quay lại danh sách'}</button>
+</div></div></div>`;
+}
+
+function pgAction(){
+return `<div class="page on"><div class="pg-title">Chuyển hóa hành động</div><div class="pg-desc">Mỗi nguyên lý đi kèm một danh sách hành động. Đánh dấu những gì bạn đã thực hiện.</div>
+${P.map(p=>{
+const ks=[`${p.id}_micro`,`${p.id}_ifthen`,`${p.id}_long`,`${p.id}_avoid`];
+const labels=["Hành động nhỏ","Quy tắc Nếu–Thì","Nguyên tắc dài hạn","Việc cần tránh"];
+const vals=[p.micro,p.ifthen,p.longterm,p.avoid];
+return `<div class="card"><h3>Nguyên lý ${p.id}: ${p.title}</h3>
+${ks.map((k,i)=>`<div class="ck-item ${S.checks[k]?'done':''}"><input type="checkbox" ${S.checks[k]?'checked':''} onchange="S.checks['${k}']=this.checked;save()"><div><strong style="font-size:11px;color:var(--moss-l)">${labels[i]}</strong><br>${vals[i]}</div></div>`).join('')}</div>`;
+}).join('')}</div>`;
+}
+
+function pgFlash(){
+const idx=S.fcIdx%FLASH.length;
+const f=FLASH[idx];
+return `<div class="page on"><div class="pg-title">Thẻ ghi nhớ</div><div class="pg-desc">Nhấn vào thẻ để lật. Thẻ trước: tình huống kích hoạt cảm xúc. Thẻ sau: nguyên tắc tâm lý tương ứng.</div>
+<div class="fc-card" id="fcCard" onclick="document.getElementById('fcCard').classList.toggle('flipped')">
+<div class="fc-inner">
+<div class="fc-front"><div class="fc-label">Tình huống kích hoạt</div><p>${f.front}</p></div>
+<div class="fc-back"><div class="fc-label">Nguyên tắc ứng phó</div><p>${f.back}</p></div>
+</div></div>
+<div class="fc-nav">
+<button class="btn btn-s" onclick="S.fcIdx=Math.max(0,S.fcIdx-1);save();render()">← Trước</button>
+<span>${idx+1} / ${FLASH.length}</span>
+<button class="btn btn-p" onclick="S.fcIdx++;save();render()">Tiếp →</button>
+</div>
+<div style="margin-top:16px;text-align:center">
+<button class="btn btn-s" style="font-size:11px" onclick="markFcKnown()">Đã thuộc – ẩn thẻ này</button>
+<button class="btn btn-s" style="font-size:11px" onclick="resetFc()">Đặt lại tất cả thẻ</button>
+</div></div>`;
+}
+
+function markFcKnown(){
+if(S.fcDue[S.fcIdx%FLASH.length]) S.fcDue[S.fcIdx%FLASH.length].interval=999;
+S.fcIdx++;save();render();
+}
+function resetFc(){
+S.fcIdx=0;S.fcDue=FLASH.map((_,i)=>({id:i,due:0,interval:1}));save();render();
+}
+
+let simCur=0,simAnswered=null;
+function pgSim(){
+const s=SIM[simCur];
+return `<div class="page on"><div class="pg-title">Mô phỏng quyết định</div><div class="pg-desc">Tình huống ${simCur+1}/${SIM.length}. Chọn đáp án phản ánh hành vi thực tế của bạn.</div>
+<div class="sim-card">
+<div class="sim-q">${s.q}</div>
+<div class="sim-opts">${s.opts.map((o,i)=>`<div class="opt-c ${simAnswered===i?(i===s.best?'sel':''):(simAnswered!==null&&i===s.best?'sel':'')}" onclick="answerSim(${i})" style="${simAnswered!==null?'pointer-events:none':''};${simAnswered!==null&&i===s.best?'border-color:var(--moss);background:rgba(74,124,89,.1)':''};${simAnswered===i&&i!==s.best?'border-color:var(--red);background:rgba(192,57,43,.1)':''}">${o}</div>`).join('')}</div>
+${simAnswered!==null?`<div class="sim-fb ${simAnswered===s.best?'correct':'wrong'}"><strong>${simAnswered===s.best?'Lựa chọn phù hợp!':'Hãy suy nghĩ lại...'}</strong><br><br>${s.fb}</div>`:''}
+</div>
+<div class="fc-nav">
+<button class="btn btn-s" ${simCur===0?'disabled':''} onclick="simCur--;simAnswered=null;render()">← Trước</button>
+<span>${simCur+1} / ${SIM.length}</span>
+<button class="btn btn-p" onclick="simCur=Math.min(SIM.length-1,simCur+1);simAnswered=null;render()">Tiếp →</button>
+</div></div>`;
+}
+function answerSim(i){
+simAnswered=i;
+const s=SIM[simCur];
+if(!S.simDone.includes(simCur)){
+S.simDone.push(simCur);
+if(i===s.best) S.simScore++;
+save();
+}
+render();
+}
+
+function pgMistakes(){
+return `<div class="page on"><div class="pg-title">12 Sai lầm phổ biến</div><div class="pg-desc">Những bẫy tâm lý phổ biến nhất mà hầu hết mọi người mắc phải khi đưa ra quyết định tài chính.</div>
+${MISTAKES.map((m,i)=>`<div class="mistake-card"><div class="mk-num">Sai lầm ${i+1}</div><div class="mk-title">${m.title}</div><div class="mk-desc">${m.desc}</div></div>`).join('')}</div>`;
+}
+
+function pgIdentity(){
+const ans=S.identity.answers||{};
+const types=['Người thận trọng','Người cân bằng','Người mạo hiểm','Người bình thản'];
+const saved=S.identity.statement||'';
+const typIdx=S.identity.type||null;
+return `<div class="page on"><div class="pg-title">Bản sắc tài chính</div><div class="pg-desc">Khám phá "tính cách tiền bạc" của bạn và viết tuyên ngôn tài chính cá nhân.</div>
+<div class="card"><h3>Bước 1: Khám phá tính cách tiền bạc</h3>
+${IDENTITY_QS.map((q,i)=>`<div style="margin-bottom:16px"><label class="lbl">${q.q}</label><div class="opt-grid">${q.opts.map((o,j)=>`<div class="opt-c ${ans[i]===j?'sel':''}" onclick="S.identity.answers=S.identity.answers||{};S.identity.answers[${i}]=${j};save();render()">${o}</div>`).join('')}</div></div>`).join('')}
+<div class="btn-g"><button class="btn btn-p" onclick="calcIdentity()">Phân tích tính cách</button></div>
+</div>
+${typIdx!==null?`<div class="card"><h3>Kết quả: ${types[typIdx]}</h3>
+<p style="font-size:13px;color:var(--txt-m);line-height:1.7;margin-bottom:14px">${identityDesc(typIdx)}</p></div>`:''}
+<div class="card"><h3>Bước 2: Tuyên ngôn bản sắc tài chính</h3>
+<p style="font-size:12px;color:var(--txt-m);margin-bottom:10px">Viết 2–3 câu mô tả triết lý tài chính cá nhân của bạn. Ví dụ: "Tôi chọn tự do thời gian hơn thu nhập cao. Tôi luôn giữ dư địa sai sót vì biết thế giới bất định."</p>
+<textarea id="idStatement" placeholder="Viết tuyên ngôn tài chính của bạn...">${saved}</textarea>
+<div class="btn-g"><button class="btn btn-p" onclick="S.identity.statement=document.getElementById('idStatement').value;save();render()">Lưu tuyên ngôn</button></div>
+${saved?`<div class="identity-display">"${saved}"</div>`:''}</div></div>`;
+}
+function calcIdentity(){
+const ans=S.identity.answers||{};
+if(Object.keys(ans).length<IDENTITY_QS.length){alert('Vui lòng trả lời tất cả câu hỏi.');return}
+const sum=Object.values(ans).reduce((a,b)=>a+b,0);
+const avg=sum/IDENTITY_QS.length;
+S.identity.type=avg<1?0:avg<2?1:avg<2.5?2:3;
+save();render();
+}
+function identityDesc(t){
+return['Bạn ưu tiên an toàn và ổn định. Bạn sợ mất mát nhiều hơn ham lợi nhuận. Housel sẽ khuyên bạn: thận trọng là tốt, nhưng đừng để nỗi sợ khiến bạn bỏ lỡ sức mạnh lãi kép dài hạn. Hãy tìm chiến lược bạn ngủ ngon nhưng vẫn để tiền làm việc cho mình.','Bạn cân bằng giữa rủi ro và an toàn. Bạn hiểu rằng may mắn và rủi ro luôn tồn tại. Đây là vị trí tốt – Housel sẽ khuyên bạn tiếp tục duy trì sự cân bằng và luôn giữ dư địa sai sót.','Bạn sẵn sàng chấp nhận rủi ro cao. Phấn khích với cơ hội là tốt, nhưng Housel cảnh báo: đừng nhầm may mắn với tài năng. Hãy luôn giữ quỹ dự phòng và nhớ rằng sống sót quan trọng hơn thắng lớn.','Bạn có tâm thế bình thản với tiền – tài sản quan trọng nhất theo Housel. Bạn hiểu rằng tự do thời gian là cổ tức cao nhất. Hãy tiếp tục và truyền cảm hứng cho người khác.'][t];
+}
+
+function pgCompound(){
+return `<div class="page on"><div class="pg-title">Máy tính lãi kép</div><div class="pg-desc">Minh họa sức mạnh phi thường của thời gian – vũ khí bí mật của Warren Buffett.</div>
+<div class="quote">"81,5 tỷ đô trong tổng tài sản 84,5 tỷ đô của Buffett đến sau sinh nhật lần thứ 65 của ông."<cite>— Morgan Housel</cite></div>
+<div class="card"><h3>Nhập thông số</h3>
+<div class="grid2">
+<div><label class="lbl">Số tiền ban đầu</label><input type="number" id="cpInit" value="100000000" min="0"></div>
+<div><label class="lbl">Đóng góp hàng năm</label><input type="number" id="cpAnnual" value="50000000" min="0"></div>
+<div><label class="lbl">Lãi suất (%/năm)</label><input type="number" id="cpRate" value="10" min="0" max="50" step="0.5"></div>
+<div><label class="lbl">Số năm đầu tư</label><input type="number" id="cpYears" value="30" min="1" max="50"></div>
+</div>
+<div class="btn-g"><button class="btn btn-p" onclick="calcCompound()">Tính lãi kép</button></div>
+</div>
+<div id="cpResult"></div></div>`;
+}
+function initCompound(){}
+function calcCompound(){
+const init=+document.getElementById('cpInit').value||0;
+const annual=+document.getElementById('cpAnnual').value||0;
+const rate=+document.getElementById('cpRate').value/100||0.1;
+const years=+document.getElementById('cpYears').value||30;
+let v=init,data=[];
+for(let y=0;y<=years;y++){
+data.push({y,v:Math.round(v)});
+v=(v+annual)*(1+rate);
+}
+const half=data[Math.floor(years/2)]||data[0];
+const final=data[data.length-1];
+const totalContrib=init+annual*years;
+const interestOnly=final.v-totalContrib;
+const pct=totalContrib>0?Math.round(interestOnly/final.v*100):0;
+const fmt=n=>n.toLocaleString('vi-VN');
+// Show milestones
+const milestones=[0,5,10,15,20,25,30,40,50].filter(y=>y<=years);
+document.getElementById('cpResult').innerHTML=`
+<div class="card"><h3>Kết quả</h3>
+<div class="grid3">
+<div class="stat-box card card-sm"><div class="sn" style="color:var(--moss-l);font-size:20px">${fmt(final.v)}</div><div class="sl">Tổng sau ${years} năm</div></div>
+<div class="stat-box card card-sm"><div class="sn" style="color:var(--gold-l);font-size:20px">${fmt(totalContrib)}</div><div class="sl">Tổng bạn bỏ vào</div></div>
+<div class="stat-box card card-sm"><div class="sn" style="color:var(--moss);font-size:20px">${pct}%</div><div class="sl">Đến từ lãi kép</div></div>
+</div>
+<h3 style="margin-top:16px">Tiến trình theo thời gian</h3>
+<table style="width:100%;font-size:12px;border-collapse:collapse">
+<tr style="color:var(--txt-m)"><th style="text-align:left;padding:8px;border-bottom:1px solid var(--border)">Năm</th><th style="text-align:right;padding:8px;border-bottom:1px solid var(--border)">Giá trị</th><th style="text-align:right;padding:8px;border-bottom:1px solid var(--border)">Lãi kép tích lũy</th></tr>
+${milestones.map(y=>{
+const d=data[y]||data[data.length-1];
+const contrib=init+annual*y;
+return `<tr><td style="padding:6px 8px;border-bottom:1px solid var(--border)">${y}</td><td style="text-align:right;padding:6px 8px;border-bottom:1px solid var(--border)">${fmt(d.v)}</td><td style="text-align:right;padding:6px 8px;border-bottom:1px solid var(--border);color:var(--moss-l)">${fmt(Math.max(0,d.v-contrib))}</td></tr>`;
+}).join('')}
+</table>
+<div class="quote" style="margin-top:16px">Sau ${Math.floor(years/2)} năm: ${fmt(half.v)} → Sau ${years} năm: ${fmt(final.v)}.<br>Nửa sau tạo ra ${fmt(final.v-half.v)} – gấp ${half.v>0?(final.v-half.v>half.v?Math.round((final.v-half.v)/half.v)+'x':'gần bằng'):''} nửa đầu. Đó là phép màu lãi kép.</div>
+</div>`;
+}
+
+function pgMargin(){
+return `<div class="page on"><div class="pg-title">Tính dư địa an toàn</div><div class="pg-desc">"Kế hoạch quan trọng nhất là kế hoạch cho việc kế hoạch sẽ không đúng." – Morgan Housel</div>
+<div class="card"><h3>Nhập thông tin</h3>
+<div class="grid2">
+<div><label class="lbl">Chi tiêu hàng tháng (VNĐ)</label><input type="number" id="mgSpend" value="15000000"></div>
+<div><label class="lbl">Quỹ dự phòng hiện có (VNĐ)</label><input type="number" id="mgFund" value="50000000"></div>
+<div><label class="lbl">Thu nhập ròng hàng tháng (VNĐ)</label><input type="number" id="mgIncome" value="25000000"></div>
+<div><label class="lbl">Nợ phải trả hàng tháng (VNĐ)</label><input type="number" id="mgDebt" value="0"></div>
+</div>
+<div class="btn-g"><button class="btn btn-p" onclick="calcMargin()">Tính dư địa an toàn</button></div>
+</div>
+<div id="mgResult"></div></div>`;
+}
+function initMargin(){}
+function calcMargin(){
+const spend=+document.getElementById('mgSpend').value||0;
+const fund=+document.getElementById('mgFund').value||0;
+const income=+document.getElementById('mgIncome').value||0;
+const debt=+document.getElementById('mgDebt').value||0;
+const totalMonthly=spend+debt;
+const months=totalMonthly>0?Math.round(fund/totalMonthly*10)/10:0;
+const surplus=income-totalMonthly;
+const surplusRate=income>0?Math.round(surplus/income*100):0;
+const level=months>=6?'Tốt':months>=3?'Chấp nhận được':'Nguy hiểm';
+const color=months>=6?'var(--moss-l)':months>=3?'var(--gold-l)':'var(--red-l)';
+const fmt=n=>n.toLocaleString('vi-VN');
+document.getElementById('mgResult').innerHTML=`
+<div class="card">
+<h3>Kết quả phân tích</h3>
+<div class="grid2">
+<div class="stat-box card card-sm"><div class="sn" style="color:${color}">${months}</div><div class="sl">Tháng dự phòng</div></div>
+<div class="stat-box card card-sm"><div class="sn" style="color:${surplusRate>=20?'var(--moss-l)':surplusRate>=0?'var(--gold-l)':'var(--red-l)'}">${surplusRate}%</div><div class="sl">Tỷ lệ thặng dư thu nhập</div></div>
+</div>
+<div style="margin:16px 0">
+<label class="lbl">Mức dự phòng: <span style="color:${color}">${level}</span></label>
+<div class="meter"><div class="meter-f" style="width:${Math.min(100,months/12*100)}%;background:${color}"></div></div>
+<div class="meter-i"><span>0 tháng</span><span>6 tháng (tối thiểu)</span><span>12 tháng (lý tưởng)</span></div>
+</div>
+<div class="${months<3?'warn-box':'action-box'}">
+<div class="${months<3?'wb-t':'ab-t'}">${months<3?'⚠️ Cảnh báo':'✓ Đánh giá'}</div>
+<p>${months>=6?'Bạn có dư địa an toàn tốt. Housel sẽ hài lòng – bạn hiểu rằng sống sót là nền tảng. Hãy tiếp tục duy trì.':months>=3?'Mức dự phòng chấp nhận được, nhưng chưa lý tưởng. Hãy cố gắng đạt 6 tháng chi tiêu. Mỗi tháng trích thêm '+fmt(Math.round(surplus*0.5))+' VNĐ vào quỹ.':'Mức dự phòng quá thấp! Housel cảnh báo: không có dư địa sai sót = bạn sẽ bị loại khỏi cuộc chơi khi gặp bất ngờ. Ưu tiên số 1: xây quỹ dự phòng ít nhất 6 tháng.'}</p>
+</div>
+${surplus>0?`<div class="action-box"><div class="ab-t">📊 Lộ trình đạt 6 tháng dự phòng</div>
+<p>Cần: ${fmt(totalMonthly*6)} VNĐ. Còn thiếu: ${fmt(Math.max(0,totalMonthly*6-fund))} VNĐ.<br>
+Nếu tiết kiệm ${fmt(Math.round(surplus*0.5))}/tháng (50% thặng dư), bạn đạt mục tiêu sau khoảng ${Math.max(0,totalMonthly*6-fund)>0?Math.ceil(Math.max(0,totalMonthly*6-fund)/(surplus*0.5)):0} tháng.</p></div>`:''}
+</div>`;
+}
+
+// ===== KHỞI TẠO =====
+render();
+</script>
+</body>
+</html>
